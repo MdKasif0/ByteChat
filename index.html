@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteChat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loginScreen">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button id="loginBtn">Login</button>
+        <p>Your Peer ID: <span id="peerIdDisplay"></span></p>
+    </div>
+
+    <div id="mainScreen" class="hidden">
+        <div class="main-header">
+            <h1>ByteChat</h1>
+            <button id="mainMenuBtn"><i class="fas fa-ellipsis-vertical"></i></button>
+        </div>
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search or start new chat">
+        </div>
+        <div id="chatList"></div>
+        <div id="noChatMessage" class="no-chat-message">
+            No chats available. Connect to a friend to start chatting!
+        </div>
+        <button id="byteChatAiBtn" class="floating-btn"><i class="fas fa-robot"></i></button>
+    </div>
+
+    <div id="chatScreen" class="hidden">
+        <div class="chat-header">
+            <div class="header-left">
+                <button id="backBtn"><i class="fas fa-arrow-left"></i></button>
+                <img id="profilePic" src="initial_dp.png" alt="Profile Picture">
+                <div class="header-info">
+                    <h2 id="chatName">Friend</h2>
+                    <span class="status">online</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="videoCallBtn"><i class="fas fa-video"></i></button>
+                <button id="voiceCallBtn"><i class="fas fa-phone"></i></button>
+                <button id="chatMenuBtn"><i class="fas fa-ellipsis-vertical"></i></button>
+            </div>
+        </div>
+
+        <div class="chat-container" id="chatContainer"></div>
+
+        <div class="chat-input">
+            <input type="file" id="fileInput" style="display: none;">
+            <input type="text" id="messageInput" placeholder="Message">
+            <button id="sendBtn"><i class="fas fa-microphone"></i></button>
+            <label for="fileInput">
+              <i class="fas fa-paperclip"></i>
+            </label>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Settings</h3>
+            <div class="settings-item">
+                <p>Your Peer ID: <span id="modalPeerId"></span></p>
+                <button id="copyPeerIdBtn">Copy</button>
+            </div>
+            <div class="settings-item">
+                <input type="text" id="friendPeerId" placeholder="Enter friend's Peer ID">
+                <button id="connectBtn">Connect</button>
+            </div>
+            <div class="settings-item">
+                <label for="profilePicInput">Change Profile Picture:</label>
+                <input type="file" id="profilePicInput" accept="image/*">
+            </div>
+            <button id="closeModalBtn">Close</button>
+        </div>
+    </div>
+
+    <div id="callScreen" class="hidden">
+        <div class="call-header">
+            <h2 id="callStatus">Calling...</h2>
+            <p id="callDuration">00:00</p>
+        </div>
+        <div class="call-content">
+            <video id="localVideo" autoplay muted></video>
+            <video id="remoteVideo" autoplay></video>
+        </div>
+        <div class="call-controls">
+            <button id="toggleAudioBtn"><i class="fas fa-microphone"></i></button>
+            <button id="toggleVideoBtn"><i class="fas fa-video"></i></button>
+            <button id="endCallBtn"><i class="fas fa-phone-slash"></i></button>
+        </div>
+    </div>
+
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <p id="popupMessage"></p>
+            <button id="popupCloseBtn">Close</button>
+        </div>
+    </div>
+
+    <div id="contextMenu" class="context-menu hidden">
+        <ul>
+            <li id="copyMessage">Copy</li>
+            <li id="deleteMessage">Delete</li>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
